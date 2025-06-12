@@ -1,4 +1,6 @@
 # AWS Todo App
+![Capture d’écran 2025-06-12 à 17 29 53](https://github.com/user-attachments/assets/01a9396d-08bc-46ab-84c6-546ac1eebbf1)
+
 
 A simple, full-stack TODO list application built with Node.js, Express, and MySQL, designed to demonstrate AWS cloud infrastructure deployment with cost optimization principles.
 
