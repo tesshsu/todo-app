@@ -5,6 +5,7 @@
   "author": "Yogasaikrishna",
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.828.0",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "mysql": "^2.9.0"

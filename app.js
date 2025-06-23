@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 var express = require('express');
 var bodyparser = require('body-parser');
 var connection = require('./connection'); // <-- This now runs AFTER .env is loaded
-var routes = require('./routes');
+var routes = require('./routes.js');
 
 var app = express();
 app.use(bodyparser.urlencoded({extended: true}));

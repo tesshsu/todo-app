@@ -1,16 +1,35 @@
 // connection.js
-var mysql = require('mysql');
+const mysql = require('mysql');
+const { SecretsManagerClient, GetSecretValueCommand } = require('@aws-sdk/client-secrets-manager');
+
+// Initialize Secrets Manager client
+const client = new SecretsManagerClient({ region: process.env.AWS_REGION });
+
+async function getDbCredentials() {
+  try {
+    const command = new GetSecretValueCommand({
+      SecretId: process.env.SECRET_NAME,
+    });
+    const data = await client.send(command);
+    return JSON.parse(data.SecretString);
+  } catch (error) {
+    console.error('Error retrieving secret:', error);
+    throw error;
+  }
+}
 
 function Connection() {
   this.pool = null;
 
-  this.init = function() {
+  this.init = async function() {
+    const credentials = await getDbCredentials();
     this.pool = mysql.createPool({
       connectionLimit: 10,
-      host:     process.env.DB_HOST,     // Use the environment variable
-      user:     process.env.DB_USER,     // Use the environment variable
-      password: process.env.DB_PASSWORD, // Use the environment variable
-      database: process.env.DB_DATABASE  // Use the environment variable
+      host: credentials.host || process.env.DB_HOST, // Fallback to env if not in secret
+      user: credentials.username,
+      password: credentials.password,
+      database: credentials.database,
+      ssl: { rejectUnauthorized: true } // Enforce SSL for HIPAA
     });
   };
 
