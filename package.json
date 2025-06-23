@@ -1,13 +1,17 @@
 {
-  "name": "todoapp",
+  "name": "todo-app",
   "version": "1.0.0",
-  "description": "Simple TODO list app using Node.js, Express and MySQL",
-  "author": "Yogasaikrishna",
-  "license": "MIT",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-    "@aws-sdk/client-secrets-manager": "^3.828.0",
-    "body-parser": "^1.14.1",
-    "express": "^4.13.3",
-    "mysql": "^2.9.0"
-  }
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "dotenv": "^10.0.0"
+  },
+  "author": "",
+  "license": "ISC"
 }
